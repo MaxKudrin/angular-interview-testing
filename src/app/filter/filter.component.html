@@ -1,0 +1,157 @@
+<div class="container">
+  <mat-toolbar class="navbar">
+    <mat-icon (click)="handleCategoryBlur()">chevron_left</mat-icon>
+    <h3>Filters</h3>
+    <span>Clear all</span>
+  </mat-toolbar>
+
+  <div class="content_wrapper">
+    <section class="section">
+      <span class="section-title">Search by title and location</span>
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix class="main-color">search</mat-icon>
+        <input type="text" matInput placeholder="What" class="main-color" [matAutocomplete]="auto" [formControl]="searchTitleControl" multiple/>
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" (click)="handleSelectCatagory(true, option.id)">
+                {{option.name}}
+            </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix class="main-color">room_outline</mat-icon>
+        <input type="text" matInput placeholder="Where" class="main-color" />
+      </mat-form-field>
+    </section>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <section class="section">
+      <span class="section-cat-margin">Category</span>
+      <mat-chip-list>
+        <mat-chip removable *ngFor="let category of selectedCategories">
+          {{category.name}}
+          <mat-icon matChipRemove (click)="handleSelectCatagory(false, category.id)">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+
+      <mat-form-field appearance="outline" class="section-form-field">
+        <mat-icon matPrefix class="main-color">search</mat-icon>
+        <input
+          type="text"
+          matInput
+          placeholder="Search category"
+          class="main-color"
+          [(ngModel)]="categorySearch"
+          (click)="handleCategorySearch()"
+          (keyup)="handleCategorySearch()"
+        />
+      </mat-form-field>
+    </section>
+
+    <!-- accordion -->
+
+    <section class="section">
+      <mat-accordion multi *ngIf="!isCategorySearch" class="accordion">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="main-color"> Job Type </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <p>
+              <mat-checkbox> One time (32423) </mat-checkbox>
+            </p>
+            <p>
+              <mat-checkbox> Part time (123) </mat-checkbox>
+            </p>
+            <p>
+              <mat-checkbox> Full time (1241) </mat-checkbox>
+            </p>
+            <mat-slide-toggle> I'm looking for intern </mat-slide-toggle>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="main-color"> Skill level </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <p>
+              <mat-checkbox> One time (32423) </mat-checkbox>
+            </p>
+            <p>
+              <mat-checkbox> Part time (123) </mat-checkbox>
+            </p>
+            <p>
+              <mat-checkbox> Full time (1241) </mat-checkbox>
+            </p>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="main-color"> Payment type </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-radio-group>
+              <p>
+                <mat-radio-button value="1"> Hourly (234) </mat-radio-button>
+              </p>
+              <p>
+                <mat-radio-button value="2"> Budget (2315) </mat-radio-button>
+              </p>
+              <p>
+                <mat-radio-button value="3"> Salary (241) </mat-radio-button>
+              </p>
+              <p>
+                <mat-radio-button value="4"> No Reward (785) </mat-radio-button>
+              </p>
+            </mat-radio-group>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="main-color"> Payment rate </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="section-row">
+            <mat-form-field appearance="outline">
+              <mat-icon matPrefix class="main-color">attach_money</mat-icon>
+              <input type="number" matInput placeholder="min" />
+            </mat-form-field>
+            <span class="splitter">—</span>
+            <mat-form-field appearance="outline">
+              <mat-icon matPrefix class="main-color">attach_money</mat-icon>
+              <input type="number" matInput placeholder="max" />
+            </mat-form-field>
+          </div>
+          <mat-slide-toggle>Interval rate</mat-slide-toggle>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <cdk-virtual-scroll-viewport
+        itemSize="4"
+        class="scroll-viewport"
+        *ngIf="isCategorySearch"
+      >
+        <mat-accordion>
+          <mat-expansion-panel *cdkVirtualFor="let item of filtredCategories">
+            <mat-expansion-panel-header class="main-color">
+              {{ item.name }}
+            </mat-expansion-panel-header>
+            <p *ngFor="let child of item.children">
+              <mat-checkbox
+                [checked]="child.isSelected"
+                [(ngModel)]="child.isSelected"
+                (ngModelChange)="handleSelectCatagory($event, child.id)"
+                >{{ child.name }}</mat-checkbox
+              >
+            </p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </cdk-virtual-scroll-viewport>
+    </section>
+  </div>
+
+  <mat-toolbar class="footer">
+    <button mat-button color="accent" (click)="handleCategoryBlur()">Cancel</button>
+    <button mat-raised-button color="accent">Save</button>
+  </mat-toolbar>
+</div>

@@ -1,1 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  background-color: #e5e5e5;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// typography
+
+.mat-typography {
+  font: 300 16px/20px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}
+
+// chips
+
+.mat-chip {
+  font-weight: 300;
+}
+.mat-chip.mat-standard-chip {
+  background-color: #efefef;
+  color: #4c585d;
+}
+.mat-chip.mat-standard-chip .mat-chip-remove {
+  color: #013349;
+  opacity: 1;
+}
+
+// form-field
+
+.mat-form-field {
+  font-weight: 300;
+}
+.mat-form-field-infix {
+  border-top: 0.5em solid transparent;
+}
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.9em 0 0.9em 0;
+}
+//outline hover color
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #13b0ff;
+}
+.mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+//expansion panel
+.mat-expansion-panel {
+  color: #4c585d;
+}
+.mat-expansion-panel-content {
+  font-weight: 300;
+  font-size: 16px;
+}
+.accordion .mat-expansion-panel-body {
+  padding: 0 0 16px !important;
+}
+
+// checkbox color
+.mat-checkbox-frame {
+  border-color: #cfd8dc;
+  border-width: 1px !important;
+}
+
+//toggle button
+.mat-slide-toggle-bar {
+  background-color: #efefef;
+}
+
+// radiobutton
+.mat-radio-outer-circle {
+  border-width: 1px !important;
+  transform: scale(0.8);
+}
+
+//button
+.mat-button {
+  font-weight: 400;
+}
+.mat-raised-button {
+  padding: 0 30px !important;
+}

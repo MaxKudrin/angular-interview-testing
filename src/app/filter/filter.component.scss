@@ -1,0 +1,112 @@
+.navbar,
+.footer {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  height: 46px;
+  display: flex;
+  justify-content: space-between;
+  mat-icon,
+  span {
+    cursor: pointer;
+  }
+}
+.footer {
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.15);
+  height: 57px;
+}
+.main-color {
+  color: #90a4ae;
+}
+.container {
+  max-width: 350px;
+  margin: 0 auto;
+  background-color: #fff;
+  .content_wrapper {
+    width: 100%;
+    padding: 24px;
+  }
+  .divider {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+  span {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #90a4ae;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #1f2e34;
+  }
+  .section {
+    &-title {
+      margin-bottom: 1.4em;
+      display: inline-block;
+    }
+    &-cat-margin {
+      margin-bottom: 1.2em;
+      display: inline-block;
+    }
+    .mat-standard-chip.mat-chip-with-trailing-icon {
+      padding: 3.5px 8px 3.5px 12px;
+    }
+    .mat-chip-list-wrapper input.mat-input-element,
+    .mat-chip-list-wrapper .mat-standard-chip {
+      margin: 0px;
+    }
+    &-form-field {
+      margin-top: 0.75em;
+    }
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+    .splitter {
+      margin: 0 12px 5px;
+    }
+    mat-form-field {
+      width: 100%;
+    }
+    &-row {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      mat-form-field {
+        width: 87px;
+        margin: 0;
+        padding: 0;
+      }
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
+    mat-expansion-panel {
+      box-shadow: none;
+      border-bottom: solid 1px #cfd8dc;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    mat-expansion-panel-header {
+      padding: 0 3px 0 0;
+    }
+  }
+}
+.scroll-viewport {
+  height: 302px;
+  margin: 0 auto;
+  mat-expansion-panel {
+    width: 285px;
+  }
+  overflow-x: hidden;
+}

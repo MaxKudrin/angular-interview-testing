@@ -59,14 +59,14 @@ export class FilterComponent implements OnInit {
     this.categorySearch = ""
   }
   handleSelectCatagory(isSelected: boolean, id: number): void {
-    const cat: any = this.buffer.find(cat => cat.id === id)
+    const cat: Category | undefined = this.buffer.find(cat => cat.id === id)
     if (isSelected && cat) {
       this.selectedCategories.push(cat)
     }
     else {
       this.selectedCategories = this.selectedCategories.filter(cat => cat.id !== id)
-      this.categories.filter(parentCat => {
-        if (parentCat.id === cat.parentCategoryId && parentCat.children) {
+      this.categories.forEach(parentCat => {
+        if (cat !== undefined && parentCat.id === cat.parentCategoryId && parentCat.children) {
           parentCat.children = parentCat.children.map(c => {
             if (c.id === id) {
               c.isSelected = false
@@ -88,8 +88,8 @@ export class FilterComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.childCategories.filter(option => option.name.toLowerCase().includes(filterValue))
   }
-  displayFn(subject: any) {
-    return subject ? subject.name : undefined
+  displayFn(subject: ChildCategory) {
+    return subject ? subject.name : ""
   }
 
 }

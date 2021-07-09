@@ -15,11 +15,14 @@ export class FilterService {
   }
 
   updateCategories(): void {
-    console.log('updateCategories')
-    this.http.get<CategoryList>(this.apiUrl).subscribe(
-      (data) => {
-        this.dataProviderService.appendCategoryListChunk(data.items);
-      }
-    )
+    try {
+      this.http.get<CategoryList>(this.apiUrl).subscribe(
+        (data) => {
+          this.dataProviderService.appendCategoryListChunk(data.items);
+        }
+      )
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
